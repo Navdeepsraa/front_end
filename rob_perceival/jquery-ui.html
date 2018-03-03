@@ -1,0 +1,57 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
+    <link type="text/css" rel="stylesheet" href="jquery-ui/jquery-ui.css">
+    <style>
+        #sq{
+            background-color: red;
+            height:100px;
+            width: 100px;
+        }
+        #sq1{
+               background-color: cyan;
+            height:100px;
+            width: 100px;
+        }
+           #para{
+               background-color: lawngreen;
+            height:100px;
+            width: 100px;
+        }
+                
+           #resize{
+               background-color: papayawhip;
+            height:100px;
+            width: 100px;
+        }
+           #drop{
+               background-color: sandybrown;
+            height:100px;
+            width: 100px;
+        }
+                
+    </style>
+</head>
+<body>
+    <div id="sq"></div>
+    <div id="sq1"></div>
+      <div id="para">
+          <spam id="para1">hey!i am stuck in this box!</spam></div>
+          <div id="resize"></div>
+          <div id="drop"></div>
+
+    <script type="text/javascript">
+        $("#sq").draggable();
+         $("#sq1").draggable({axis:"x"});                 $("#para1").draggable({containment:"parent"});
+        $("#resize").resizable();
+        $("#drop").droppable({
+                  drop: function( event, ui ) {
+    alert("drop");
+      }
+        });
+
+        
+    </script>
+</body>
+</html>

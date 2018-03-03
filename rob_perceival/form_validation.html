@@ -1,0 +1,103 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+    <style link="text/css">
+        #container{
+            width:500px;
+            margin:0px auto;
+        }
+        label{
+            font-size: 25px;
+            width:250px;
+            float:left;
+            position: relative;
+            top:10px;
+        }
+        input{
+            font-size: 25px;
+            margin:10px;
+            border-radius: 5px;
+             border:1px solid #CCCCCC;
+        }
+        #submit{
+            width:150px;
+            font-size: 25px;
+            margin-top: 10px;
+            margin-left: 260px;
+            border-radius: 5px;
+            border: 1px solid grey;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="cantainer">
+        <div id="error"></div>
+          <div id="form">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="eg.abc@abc.com">
+        </div>
+        <div id="form">
+        <label for="phone">Telephone</label>
+        <input type="text" name="phone" id="phone" placeholder="0123456789">
+        </div>
+        <div id="form">
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="pass">
+        </div>
+        <div id="form">
+        <label for="cpass">Confirm Password</label>
+        <input type="password" id="cpass" name="cpass" >
+        </div>
+        <button id="submit">Sign In</button>
+    </div>
+    <script type="text/javascript">
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+            }
+       
+        $("#submit").click(function(){
+                 var error="";
+        var empty="";
+             if($("#email").val()==""){
+            empty+="email ";
+        }
+         if($("#phone").val()==""){
+            empty+="phone ";
+        }
+         if($("#pass").val()==""){
+            empty+="password ";
+        }
+         if($("#cpass").val()==""){
+            empty+="confirm password";
+        }
+        if(empty!="")
+            {
+                error+="the following fields are empty:"+empty+"</br>";
+            }
+            if(isEmail($("#email").val())==false){
+                error+="<p>Enter valid Email</p>";
+            }
+            if($.isNumeric($("#phone").val())==false){
+                error+="<p>enter valid phone number</p>";
+            }
+            if($("#pass").val()!=$("#cpass").val()){
+                error+="<p>Enter same password</p>";
+            }
+              if(error!="")
+            {
+                $("#error").html(error);
+            }
+        });
+   /*     if(typeof jQuery=="undefined")
+            {
+                alert("nnot installed")
+            }
+        else
+            {
+                alert("installed")
+            }*/
+    </script>
+</body>
+</html>

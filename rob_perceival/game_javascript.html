@@ -1,0 +1,83 @@
+<html>
+<head>
+    <style>
+        #shape{
+            width:200px;
+            height:200px;
+            background-color: aqua;
+            display: none;
+            position: relative;
+        }
+        .bold{
+            font-weight: bold;
+        }
+    </style>
+</head>
+    <body>
+        <h1>Test Your Reaction</h1>
+        <p>click on the boxes and the circles as quickly as you can!</p>
+        <p class="bold">Time Taken:<span id="time_taken"></span></p>
+        <h4>Highest Score : <span id="high"></span></h4>
+        <div id="shape"></div>
+        
+        
+        
+        <script>
+            
+            function change_color()
+            {
+                var letter="0123456789ABCDEF".split('');
+                var color="#"
+                for(i=0;i<6;i++)
+                    {
+                        color=color+letter[Math.floor(Math.random()*16)]
+                    }
+                return color;
+            }
+            start=new Date().getTime();
+            
+            var big=10;
+            function makeShape(){
+                var width=Math.random()*250;
+                var top=Math.random()*400;
+                var left=Math.random()*400;
+                start=new Date().getTime();
+                if(Math.random()>0.5)
+                    {
+                        document.getElementById("shape").style.borderRadius="50%";
+                    }
+                else{
+                    document.getElementById("shape").style.borderRadius="0";
+                }
+                document.getElementById("shape").style.top=top+"px";
+                document.getElementById("shape").style.backgroundColor=change_color();
+                document.getElementById("shape").style.left=left+"px";
+                document.getElementById("shape").style.width=width+"px";
+                document.getElementById("shape").style.height=width+"px";
+                document.getElementById("shape").style.display="block";
+                
+            }
+            
+            function f(){
+                        setTimeout(makeShape, Math.random()*1500);
+            }
+            f();
+            
+            document.getElementById("shape").onclick=function(){
+                end=new Date().getTime();
+                document.getElementById("shape").style.display="none";
+                                time=(end-start)/1000;
+                if(big<time)
+                    {
+                        document.getElementById("high").innerHTML=big+"s";
+                    }
+                else
+                {
+                    big=time;
+                    document.getElementById("high").innerHTML=time+"s";
+                }
+            document.getElementById("time_taken").innerHTML=time+"s";
+                 f();
+            }
+        </script>
+    </body>

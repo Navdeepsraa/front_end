@@ -1,0 +1,76 @@
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+     <style type="text/css">
+          html{
+                 background: url(images_bbc/nature1.jpg) no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+          }
+        body{
+              background: none;
+          }
+          #content{
+                 text-align: center;
+              margin-top: 150px;
+               width:450px;
+          }
+          #city{
+              margin-bottom: 20px;
+             
+          }
+      
+      </style>
+    </head>
+    <body>
+        
+        
+        <div class="container" id="content">
+          <h1>What's The Weather?</h1>
+          <p>Enter the name of City</p>
+          <form method="get">
+              
+                <input id="city" type="text" class="form-control" placeholder="e.g.London" name="city">
+             
+                  <button id="submit" class="btn btn-primary">Submit</button>
+          </form>
+      
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+        <script type="text/javascript">
+            $("#submit").click(function(e){
+           
+                e.preventDefault();
+                $.ajax({
+                url:"https://maps.googleapis.com/maps/api/geocode/json?address="+encodeURIComponent($("#city").val())+"&key=AIzaSyB2WpV3A4qTZruxePCOvSBra6qeP9FXYnw",
+                type:"GET",
+                success:function(data)
+                {
+                    console.log(data);
+               $.each(data["results"][0]["address_components"],function(key,value){
+                   /*
+                   if(value["short_name"]=="CA"){
+                   //alert(value["types"][0]);
+                   }*/
+                    if(value["types"]=="postal_code"){
+                     alert(value["short_name"]);
+                   }
+                
+               })
+                    
+                }
+            })
+                
+                 });
+        
+            
+        </script>
+    </body>  
+</html>

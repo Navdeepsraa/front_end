@@ -1,0 +1,13 @@
+<html>
+<head>
+  <style link="text/css">
+  .margins{
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: "red";
+  }
+  </style>
+</head>
+<body>
+<div class="margins">
+</div>
